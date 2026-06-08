@@ -1,0 +1,9 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--primary);
+  font-size: 1.2rem;
+}
