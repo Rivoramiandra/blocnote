@@ -1,0 +1,53 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: blocnote-postgres
+    environment:
+      POSTGRES_DB: agenda_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - blocnote-network
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: blocnote-backend
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: agenda_db
+      JWT_SECRET: agenda_super_secret_key_2024
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    networks:
+      - blocnote-network
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: blocnote-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - blocnote-network
+    restart: unless-stopped
+
+networks:
+  blocnote-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

@@ -6,14 +6,19 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "allowJs": true,
+    "checkJs": false,
     "jsx": "react-jsx",
-    "noEmit": true,
-    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strict": false
+    "noEmit": true
   },
-  "include": ["src/**/*"]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

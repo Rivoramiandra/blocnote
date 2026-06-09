@@ -6,7 +6,7 @@ import Agenda from './components/Agenda'
 import ErrorBoundary from './components/ErrorBoundary'
 import './App.css'
 
-axios.defaults.baseURL = 'http://localhost:5000'
+axios.defaults.baseURL = '/api'
 
 // Intercepteur pour ajouter le token
 axios.interceptors.request.use(

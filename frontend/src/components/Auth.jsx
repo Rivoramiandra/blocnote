@@ -16,7 +16,7 @@ function Auth({ onLogin }) {
     setLoading(true)
     
     try {
-      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register'
+      const endpoint = isLogin ? '/auth/login' : '/auth/register'
       const res = await axios.post(endpoint, formData)
       onLogin(res.data.user, res.data.token)
     } catch (error) {

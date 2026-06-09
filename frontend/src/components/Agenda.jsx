@@ -30,7 +30,7 @@ function Agenda({ user, onLogout }) {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get('/api/events')
+      const res = await axios.get('/events')
       console.log('API Response brute:', res.data)
       
       let eventsData = []
@@ -67,7 +67,7 @@ function Agenda({ user, onLogout }) {
         date: eventData.date.split('T')[0]
       }
       
-      const res = await axios.post('/api/events', formattedData)
+      const res = await axios.post('/events', formattedData)
       
       let newEvent = res.data
       if (res.data.event) newEvent = res.data.event
@@ -91,7 +91,7 @@ function Agenda({ user, onLogout }) {
         date: eventData.date.split('T')[0]
       }
       
-      const res = await axios.put(`/api/events/${id}`, formattedData)
+      const res = await axios.put(`/events/${id}`, formattedData)
       
       let updatedEvent = res.data
       if (res.data.event) updatedEvent = res.data.event
@@ -110,7 +110,7 @@ function Agenda({ user, onLogout }) {
   const handleDeleteEvent = async (id) => {
     if (!confirm('Supprimer cet événement ?')) return
     try {
-      await axios.delete(`/api/events/${id}`)
+      await axios.delete(`/events/${id}`)
       setEvents(events.filter(e => e.id !== id))
       toast.success('Événement supprimé')
     } catch (error) {
